@@ -1,0 +1,11 @@
+.liStyle {
+    display: inline-flex;
+    margin: 20px;
+}
+.aStyle{
+    font-size: larger;
+    
+}
+.ulStyle{
+    text-align: center;
+}
