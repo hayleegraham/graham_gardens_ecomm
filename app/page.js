@@ -19,6 +19,24 @@ export default function Home() {
     image: "/petunia.jpg",
     details: 'Brand: Ferry-Morse',
     price: '$5.00'
+  },
+  {
+    name: 'Poppy',
+    image: "/poppy.jpg",
+    details: 'Brand: Ferry-Morse',
+    price: '$3.00'
+  },
+  {
+    name: 'Green Onion',
+    image: "/green_onion.jpg",
+    details: 'Brand: Ferry-Morse',
+    price: '$3.00'
+  },
+  {
+    name: 'Romain Lettuce',
+    image: "/romain_lettuce.jpg",
+    details: 'Brand: Ferry-Morse',
+    price: '$6.00'
   }
 ]
 const giftBoxData = [{
@@ -41,6 +59,7 @@ const giftBoxData = [{
 }]
   return (
     <div>
+      <Carousel title="Best Sellers" data={bestSellersData}/>
       <Carousel title="Best Sellers" data={bestSellersData}/>
 
 
