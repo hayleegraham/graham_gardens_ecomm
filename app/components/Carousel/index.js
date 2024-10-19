@@ -1,42 +1,55 @@
-'use client'
-import { useRef } from 'react';
-import styles from "./Carousel.module.css";
+"use client";
+import { useRef } from "react";
+
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
+import "./Carousel.scss";
 import Card from "@/app/components/Card";
 
+export default function Carousel({ title, data }) {
+  const ref = useRef();
+  let curPos = 0;
 
-export default function Carousel({title, data}) {
-    const ref = useRef();
-    let curPos = 0;
-    
-    const moveLeft = ()=> {
-        if(curPos + 3 < data.length) {
-            curPos++;
-            const newLeft = curPos * -345;
-            ref.current.style.left =  `${newLeft}px`;
-        }
+  const moveLeft = () => {
+    if (curPos + 3 < data.length) {
+      curPos++;
+      const newLeft = curPos * -345;
+      ref.current.style.left = `${newLeft}px`;
     }
-    const moveRight = ()=> {
-        console.log(data.length, curPos)
-        if(curPos != 0) {
-            curPos--;
-            const newLeft = curPos * -345;
-            ref.current.style.left =  `${newLeft}px`;
-        }
+  };
+  const moveRight = () => {
+    console.log(data.length, curPos);
+    if (curPos != 0) {
+      curPos--;
+      const newLeft = curPos * -345;
+      ref.current.style.left = `${newLeft}px`;
     }
-    return(
-        <div>
-            <h2>{title}</h2>
-            <div className={styles.mask_cont}>
-                <div className={styles.mask}>
-                    <div ref={ref} className={styles.track} >
-                        {data.map((seed)=>
-                        <Card key={seed.name} image={seed.image} name={seed.name} details={seed.details} price={seed.price}/>
-                        )}
-                    </div>
-                </div>
-            </div>
-            <button onClick={moveLeft}>Go Left</button>
-            <button onClick={moveRight}>Go Right</button>
+  };
+  return (
+    <div className="carousel">
+      <h2>{title}</h2>
+      <div className="mask_cont">
+        <div className="mask">
+          <div ref={ref} className="track">
+            {data.map((seed) => (
+              <Card
+                key={seed.name}
+                image={seed.image}
+                name={seed.name}
+                variety={seed.variety}
+                brand={seed.brand}
+                price={seed.price}
+              />
+            ))}
+          </div>
         </div>
-    )
+        <span class="material-symbols-outlined" style={{left:'-75px', top:'150px'}} onClick={moveLeft}>
+            arrow_left
+        </span>
+        <span class="material-symbols-outlined" style={{left:'857px', top:'150px'}} onClick={moveRight}>
+            arrow_right
+        </span>
+      </div>
+    </div>
+  );
 }

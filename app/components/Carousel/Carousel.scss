@@ -1,0 +1,35 @@
+.carousel{
+    margin: 0 auto;
+    width: 1035px;
+    h2{
+        text-align: center;
+    }
+    .track{
+        display: flex;
+        position: absolute;
+        transition: ease-in-out 1s;
+        left: 0;
+    }
+    .mask{
+        width: 1035px;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+    }
+    .mask_cont{
+        height: 400px;
+        position: relative;
+    }
+    
+    .left_btn,
+    .right_btn{
+        height: 40px;
+        width: 40px;
+        font-size: xx-large;
+    }
+    span{
+        font-size: 130px;
+        color: rgb(110, 110, 110);
+        position: relative;
+    }
+}

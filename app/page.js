@@ -5,63 +5,70 @@ export default function Home() {
   const bestSellersData = [{
     name: 'Sunflower',
     image: "/sunflower.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$5.00'
+    variety: "Variety: Mammoth",
+    brand: 'Brand: Ferry-Morse',
+    price: '$5.00  (50 seeds)'
   },
   {
     name: 'Strawberry',
     image: "/strawberry.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$5.00'
-  },
-  {
-    name: 'Petunia',
-    image: "/petunia.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$5.00'
+    variety: "Variety: Alpine",
+    brand: 'Brand: Monticello',
+    price: '$4.00  (100 seeds)'
   },
   {
     name: 'Poppy',
     image: "/poppy.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$3.00'
+    variety: "Variety: Red Corn",
+    brand: 'Brand: Ferry-Morse',
+    price: '$5.00  (100 seeds)'
   },
+  {
+    name: 'Petunia',
+    image: "/petunia.jpg",
+    variety: "Variety: Dwarf Mix",
+    brand: 'Brand: Ferry-Morse',
+    price: '$5.00  (100 seeds)'
+  },
+
   {
     name: 'Green Onion',
     image: "/green_onion.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$3.00'
+    variety: "Variety: Evergreen Bunching",
+    brand: 'Brand: Botanical Interests',
+    price: '$4.00  (100 seeds)'
   },
   {
     name: 'Romain Lettuce',
     image: "/romain_lettuce.jpg",
-    details: 'Brand: Ferry-Morse',
-    price: '$6.00'
+    variety: "Variety: Parris Island",
+    brand: 'Brand: Ferry-Morse',
+    price: '$3.00  (100 seeds)'
   }
 ]
-const giftBoxData = [{
-  name: 'All the Herbs',
-  image: "https://nextjs.org/icons/globe.svg",
-  details: 'Rosemary, Basil, Cilantro',
-  price: '$15.00'
+const giftBoxData = [
+  {
+    name: 'Fruits & Veggies Gift Box',
+    image: "/gift_box.jpg",
+    variety: 'Strawberries, Tomato, Carrot, and Romaine Lettuce Seeds',
+    price: '$18.00  (400 seeds)'
+  },
+  {
+  name: 'All the Herbs Gift Box',
+  image: "/gift_box.jpg",
+  variety: 'Basil, Rosemary, Italian Parsley, and Cilantro Seeds',
+  price: '$15.00  (400 seeds)'
 },
 {
-  name: 'Fruits & Veggies',
-  image: 'image',
-  details: 'Strawberries, Zuccini, Romaine Lettuce',
-  price: '$15.00'
-},
-{
-  name: 'Flower Bouquet',
-  image: 'image',
-  details: 'Petunias, Daisies, Roses',
-  price: '$15.00'
+  name: 'Flower Bouquet Gift Box',
+  image: "/gift_box.jpg",
+  variety: 'Sunflower, Petunia, Peonie, and Snapdragon Seeds',
+  price: '$18.00  (400 seeds)'
 }]
   return (
     <div>
-      <Carousel title="Best Sellers" data={bestSellersData}/>
-      <Carousel title="Best Sellers" data={bestSellersData}/>
-
+      <Carousel title="TOP SELLERS" data={bestSellersData}/>
+      <Carousel title="GIFT BOXES" data={giftBoxData}/>
 
     </div>
          
