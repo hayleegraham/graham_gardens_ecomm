@@ -27,8 +27,8 @@ export default function Carousel({ title, data }) {
   };
   return (
     <div className="carousel">
-      <h2>{title}</h2>
-      <div className="mask_cont">
+      <h2 className="font-bold text-2xl">{title}</h2>
+      <div className="relative h-[440px]">
         <div className="mask">
           <div ref={ref} className="track">
             {data.map((seed) => (

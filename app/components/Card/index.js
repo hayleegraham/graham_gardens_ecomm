@@ -17,8 +17,8 @@ export default function Card({ image, name, variety, brand, price }) {
 
   return (
     <div className="card">
-      <img height="185px" width="305px" src={image}></img>
-      <h3>{name}</h3>
+      <img className="max-w-none" height="185px" width="305px" src={image}></img>
+      <h3 className="font-bold text-lg">{name}</h3>
       <p>{variety}</p>
       <p>{brand}</p>
       <p>{price}</p>
@@ -27,8 +27,8 @@ export default function Card({ image, name, variety, brand, price }) {
         <div>{count}</div>
         <button onClick={countUp}>+</button>
       </div>
-      <button className="main_btn">ADD TO CART</button>
-      <button className="main_btn">BUY NOW</button>
+      <button className="main_btn text-[13px]">ADD TO CART</button>
+      <button className="main_btn text-[13px]">BUY NOW</button>
     </div>
   );
 }
