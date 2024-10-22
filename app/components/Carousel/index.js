@@ -43,10 +43,10 @@ export default function Carousel({ title, data }) {
             ))}
           </div>
         </div>
-        <span className="material-symbols-outlined" style={{left:'-75px', top:'150px'}} onClick={moveLeft}>
+        <span className="material-symbols-outlined cursor-pointer" style={{left:'-75px', top:'150px'}} onClick={moveRight}>
             arrow_left
         </span>
-        <span className="material-symbols-outlined" style={{left:'857px', top:'150px'}} onClick={moveRight}>
+        <span className="material-symbols-outlined cursor-pointer" style={{left:'857px', top:'150px'}} onClick={moveLeft}>
             arrow_right
         </span>
       </div>

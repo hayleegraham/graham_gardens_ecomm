@@ -24,7 +24,7 @@ export default function Card({ image, name, variety, brand, price }) {
       <p>{price}</p>
       <div className="qty_cont">
         <button onClick={countDown}>-</button>
-        <div>{count}</div>
+        <div className="pt-[2px]">{count}</div>
         <button onClick={countUp}>+</button>
       </div>
       <button className="main_btn text-[13px]">ADD TO CART</button>
