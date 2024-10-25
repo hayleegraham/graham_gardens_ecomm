@@ -11,23 +11,11 @@
     background-color: white;
     border: 1px solid #797979;
     border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    left: 45px;
-    top: 47px;
   }
-  .nav_ul {
+  .nav_cont {
     height: 74px;
-    text-align: center;
     border: 1px solid black;
     background-color: #cbe2d3;
-    li {
-      display: inline-flex;
-      margin: 24px 10px;
-    }
-    a {
-      color: black;
-    }
   }
   
 }
