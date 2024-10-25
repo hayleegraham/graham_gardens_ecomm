@@ -1,7 +1,6 @@
 "use client";
-import { useRef } from "react";
-
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useRef , useEffect} from "react";
+import {useMedia} from 'react-use';
 
 import "./Carousel.scss";
 import Card from "@/app/components/Card";
@@ -10,8 +9,15 @@ export default function Carousel({ title, data }) {
   const ref = useRef();
   let curPos = 0;
 
+  const isWide = useMedia('(min-width: 1280px)');
+
+  useEffect(() => {
+    ref.current.style.left = `0px`;
+  }, [isWide]);
+
   const moveLeft = () => {
-    if (curPos + 3 < data.length) {
+    let cardsOnScreen = isWide? 3 : 1;
+    if (curPos + cardsOnScreen < data.length) {
       curPos++;
       const newLeft = curPos * -345;
       ref.current.style.left = `${newLeft}px`;

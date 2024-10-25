@@ -20,8 +20,8 @@ export default function MainNav() {
                 <li><a className="text-base" href="/carousel">GARDENING GUIDE</a></li>
 
                 <div className="inline-flex">
-                    <a className="text-base absolute left-[1685px] top-[60px]" href="/">LOG IN / SIGN UP</a>
-                    <img src="/cart.png" className="w-[25px] absolute left-[1835px] top-[58px] cursor-pointer"></img>
+                    <a className="text-base absolute 2xl:left-[1305px] top-[60px]" href="/">LOG IN / SIGN UP</a>
+                    <img src="/cart.png" className="w-[25px] absolute 2xl:left-[1457px] top-[58px] cursor-pointer"></img>
                 </div>
             </ul>
         </div>
