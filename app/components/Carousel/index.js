@@ -19,16 +19,26 @@ export default function Carousel({ title, data }) {
     let cardsOnScreen = isWide? 3 : 1;
     if (curPos + cardsOnScreen < data.length) {
       curPos++;
-      const newLeft = curPos * -345;
-      refTrack.current.style.left = `${newLeft}px`;
+      if(isWide){
+        const newLeft = curPos * -345;
+        refTrack.current.style.left = `${newLeft}px`;
+      }else{
+        const newLeft = curPos * -322;
+        refTrack.current.style.left = `${newLeft}px`;
+      }
+      
     }
   };
   const moveRight = () => {
-    console.log(data.length, curPos);
     if (curPos != 0) {
       curPos--;
-      const newLeft = curPos * -345;
-      refTrack.current.style.left = `${newLeft}px`;
+      if(isWide){
+        const newLeft = curPos * -345;
+        refTrack.current.style.left = `${newLeft}px`;
+      }else{
+        const newLeft = curPos * -322;
+        refTrack.current.style.left = `${newLeft}px`;
+      }
     }
   };
   return (
