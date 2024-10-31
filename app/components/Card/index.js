@@ -17,7 +17,7 @@ export default function Card({ image, name, variety, brand, price }) {
 
   return (
     <div className="card">
-      <img className="max-w-none h-[185px] sm:w-[305px] w-[280px]" src={image}></img>
+      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={image}></img>
       <h3 className="font-bold text-lg">{name}</h3>
       <p>{variety}</p>
       <p>{brand}</p>

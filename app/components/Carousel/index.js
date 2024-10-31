@@ -45,7 +45,7 @@ export default function Carousel({ title, data }) {
     <div className="carousel xl:w-[1035px]">
       <h2 className="font-bold text-2xl">{title}</h2>
       <div className="relative h-[440px] flex justify-center xl:block">
-        <div className="mask xl:w-[1035px] sm:w-[350px] w-[310px]">
+        <div className="mask xl:w-[1035px] w-[310px]">
           <div ref={refTrack} className="track">
             {data.map((seed) => (
               <Card
@@ -59,10 +59,10 @@ export default function Carousel({ title, data }) {
             ))}
           </div>
         </div>
-        <span className="material-symbols-outlined cursor-pointer left-[-100px] sm:left-[-120px] xl:left-[-75px] top-[150px]" onClick={moveRight}>
+        <span className="material-symbols-outlined cursor-pointer left-[-100px] xl:left-[-75px] top-[150px]" onClick={moveRight}>
             arrow_left
         </span>
-        <span className="material-symbols-outlined cursor-pointer left-[110px] sm:left-[118px] xl:left-[857px] top-[150px]" onClick={moveLeft}>
+        <span className="material-symbols-outlined cursor-pointer left-[110px] xl:left-[857px] top-[150px]" onClick={moveLeft}>
             arrow_right
         </span>
       </div>
