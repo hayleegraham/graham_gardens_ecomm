@@ -5,7 +5,7 @@ import {useMedia} from 'react-use';
 import "./Carousel.scss";
 import Card from "@/app/components/Card";
 
-export default function Carousel({ title, data }) {
+export default function Carousel({ data }) {
   const refTrack = useRef();
   let curPos = 0;
 
@@ -43,18 +43,16 @@ export default function Carousel({ title, data }) {
   };
   return (
     <div className="carousel xl:w-[1035px]">
-      <h2 className="font-bold text-2xl">{title}</h2>
+    
+      <h2 className="font-bold text-2xl">{data.title}</h2>
+           
       <div className="relative h-[440px] flex justify-center xl:block">
         <div className="mask xl:w-[1035px] w-[310px]">
           <div ref={refTrack} className="track">
-            {data.map((seed) => (
+            {data?.items?.map((seed) => (
               <Card
                 key={seed.name}
-                image={seed.image}
-                name={seed.name}
-                variety={seed.variety}
-                brand={seed.brand}
-                price={seed.price}
+                data={seed}
               />
             ))}
           </div>

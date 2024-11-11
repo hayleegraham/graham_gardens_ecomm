@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Card.scss";
 
-export default function Card({ image, name, variety, brand, price }) {
+export default function Card({ data }) {
 
   const [count, setCount] = useState(0);
 
@@ -16,12 +16,12 @@ export default function Card({ image, name, variety, brand, price }) {
   }
 
   return (
-    <div className="card">
-      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={image}></img>
-      <h3 className="font-bold text-lg">{name}</h3>
-      <p>{variety}</p>
-      <p>{brand}</p>
-      <p>{price}</p>
+    <div className="card xl:w-[307px] w-[282px]">
+      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image}></img>
+      <h3 className="font-bold text-lg">{data.name}</h3>
+      <p>Variety: {data.variety}</p>
+      {data.brand && <p>Brand: {data.brand}</p>}
+      <p>${data.price} ({data.qty} seeds)</p>
       <div className="qty_cont">
         <button onClick={countDown}>-</button>
         <div className="pt-[2px]">{count}</div>
