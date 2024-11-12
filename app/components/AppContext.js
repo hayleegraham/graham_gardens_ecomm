@@ -4,6 +4,7 @@ import React, { createContext, useState, useEffect } from "react";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+  //get cart items from local storage if exists
   const initializeCartItems = () => {
     if (typeof window !== "undefined") {
       const storedCartItems = window.localStorage.getItem("cartItems");
@@ -18,11 +19,14 @@ const AppProvider = ({ children }) => {
   //fires anytime cartItems is changed
   //calculates current cart qty
   useEffect(() => {
+    
     let currQty = 0;
     cartItems.forEach((item) => {
       currQty += item.qty;
     });
     setCartQty(currQty);
+
+    //add cart items to local storage
     window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log("Cart Items:", cartItems);
   }, [cartItems]);
