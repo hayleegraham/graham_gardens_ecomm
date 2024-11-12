@@ -28,7 +28,6 @@ const AppProvider = ({ children }) => {
       setCartItems(prevCartItems => prevCartItems.map(item => 
         item.name === product.name ? { ...item, qty: newQty } : item
       ));
-      console.log("existing qty:", existingProduct)
     }else{
       //if not already in cart, add item to cart
       product.qty = qty;
