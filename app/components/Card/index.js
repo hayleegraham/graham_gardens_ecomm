@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "@/app/components/AppContext";
 import "./Card.scss";
 
 export default function Card({ data }) {
-
-  const [count, setCount] = useState(0);
+  const { addProduct } = useContext(AppContext);
+  const [count, setCount] = useState(1);
 
   const countUp = () =>{
     setCount(count + 1)
@@ -13,6 +14,9 @@ export default function Card({ data }) {
     if(count > 0){
       setCount(count - 1)
     }
+  }
+  const handleAddToCart = () => {
+    addProduct({...data}, count)
   }
 
   return (
@@ -27,7 +31,7 @@ export default function Card({ data }) {
         <div className="pt-[2px]">{count}</div>
         <button onClick={countUp}>+</button>
       </div>
-      <button className="main_btn text-[13px]">ADD TO CART</button>
+      <button className="main_btn text-[13px]" onClick={handleAddToCart}>ADD TO CART</button>
       <button className="main_btn text-[13px]">BUY NOW</button>
     </div>
   );

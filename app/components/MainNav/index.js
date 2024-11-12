@@ -1,12 +1,14 @@
 "use client";
-import { useState , useRef , useEffect } from "react";
+import { useState , useRef , useEffect, useContext } from "react";
 import {useMedia} from 'react-use';
+import { AppContext } from "@/app/components/AppContext";
 import "./MainNav.scss";
 
 export default function MainNav() {
     const [isVisible, setIsVisible] = useState()
     const isWide = useMedia('(min-width: 768px)');
     const ref = useRef();
+    const { cartQty } = useContext(AppContext);
 
    
     useEffect(() => {
@@ -60,6 +62,7 @@ export default function MainNav() {
             LOG IN / SIGN UP
           </a>
           <img src="/cart.png" className="w-[25px] h-[25px] cursor-pointer"></img>
+          <div>{cartQty}</div>
         </div>
       </div>
     </div>
