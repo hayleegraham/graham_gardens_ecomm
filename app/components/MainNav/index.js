@@ -61,8 +61,10 @@ export default function MainNav() {
           <a className="text-base hidden lg:block" href="/">
             LOG IN / SIGN UP
           </a>
-          <img src="/cart.png" className="w-[25px] h-[25px] cursor-pointer"></img>
-          <div>{cartQty}</div>
+          <div className="flex flex-row">
+            <img src="/cart.png" className="w-[25px] h-[25px] cursor-pointer"></img>
+            <div>({cartQty})</div>
+          </div>
         </div>
       </div>
     </div>

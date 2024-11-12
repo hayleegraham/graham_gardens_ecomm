@@ -15,7 +15,6 @@ export default function Home() {
       try {
         const apiData = await fetch("http://localhost/garden_backend/api.php");
         const jsonData = await apiData.json();
-        console.log("setting products", jsonData.products);
         
         setProducts(jsonData.products);
         setBestSellers(jsonData.bestSellers);
