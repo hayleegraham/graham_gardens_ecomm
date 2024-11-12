@@ -1,0 +1,17 @@
+.product-list{
+    margin: 0 auto;
+    h2{
+        text-align: center;
+    }
+    .track{
+        display: flex;
+        position: absolute;
+        transition: ease-in-out 1s;
+        left: 0;
+    }
+    .mask{
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+    } 
+}

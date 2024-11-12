@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
-import Carousel from "./components/Carousel";
+import ProductList from "./components/ProductList";
 import Search from "./components/Search";
 
 export default function Home() {
@@ -9,7 +9,6 @@ export default function Home() {
   const [bestSellers, setBestSellers] = useState([]);
   const [giftBoxes, setGiftBoxes] = useState([]);
   const [forBeginners, setForBeginners] = useState([]);
-  const [homeGroups, setHomeGroups] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +21,6 @@ export default function Home() {
         setBestSellers(jsonData.bestSellers);
         setGiftBoxes(jsonData.giftBoxes)
         setForBeginners(jsonData.forBeginners)
-        setHomeGroups(jsonData.homeGroups)
       } catch (error) {
         console.error(error);
         setProducts([]);
@@ -35,9 +33,9 @@ export default function Home() {
   return (
     <div>
       <Search />
-      <Carousel  data={bestSellers} />
-      <Carousel data={giftBoxes} />
-      <Carousel data={forBeginners} />
+      <ProductList  data={bestSellers} />
+      <ProductList data={giftBoxes} />
+      <ProductList data={forBeginners} />
     </div>
   );
 }
