@@ -3,6 +3,7 @@ import { useState , useRef , useEffect, useContext } from "react";
 import {useMedia} from 'react-use';
 import { AppContext } from "@/app/components/AppContext";
 import "./MainNav.scss";
+import Link from "next/link";
 
 export default function MainNav() {
     const [isVisible, setIsVisible] = useState()
@@ -36,31 +37,31 @@ export default function MainNav() {
         <img src="/hamburger.png" className="md:hidden block mr-[40px] w-[25px] h-[25px] cursor-pointer" onClick={displayNav}></img>
         <ul className="md:flex xl:gap-[30px] gap-[15px] flex-col md:flex-row mr-[50px] md:mr-0" style={{ display: isVisible ? 'flex' : 'none' }} ref={ref}>
           <li>
-            <a className="text-base" href="/">
+            <Link className="text-base" href="/">
               SHOP SEEDS 
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-base" href="/carousel">
+            <Link className="text-base" href="/about">
               CONTACT US 
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-base" href="/carousel">
+            <Link className="text-base" href="/about">
               SUBSCRIBE 
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-base" href="/carousel">
+            <Link className="text-base" href="/about">
               GARDENING GUIDE 
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="flex flex-row lg:w-[300px] sm:w-[100px] w-[40px] justify-end xl:gap-[20px] gap-[15px]">
             <img src="/person.png" className="w-[25px] h-[25px] cursor-pointer block lg:hidden"></img>
-          <a className="text-base hidden lg:block" href="/">
+          <Link className="text-base hidden lg:block" href="/">
             LOG IN / SIGN UP
-          </a>
+          </Link>
           <div className="flex flex-row">
             <img src="/cart.png" className="w-[25px] h-[25px] cursor-pointer"></img>
             <div>({cartQty})</div>
