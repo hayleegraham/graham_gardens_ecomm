@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiData = await fetch("http://localhost/garden_backend/api.php");
+        const apiData = await fetch("https://garden.grahamslams.com/api.php");
         const jsonData = await apiData.json();
         
         setProducts(jsonData.products);
