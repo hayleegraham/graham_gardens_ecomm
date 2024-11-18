@@ -3,6 +3,7 @@ import "./globals.css";
 import MainNav from "./components/MainNav";
 import Footer from "./components/Footer";
 import { AppProvider } from "@/app/components/AppContext";
+import { Suspense } from 'react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +34,9 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AppProvider>
         <MainNav />
+        <Suspense>
         {children}
+        </Suspense>
         <Footer />
         </AppProvider>
       </body>

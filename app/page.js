@@ -1,34 +1,24 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./page.module.css";
 import ProductList from "./components/ProductList";
 import Search from "./components/Search";
+import { AppContext } from "@/app/components/AppContext";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const { data } = useContext(AppContext);
   const [bestSellers, setBestSellers] = useState([]);
   const [giftBoxes, setGiftBoxes] = useState([]);
   const [forBeginners, setForBeginners] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiData = await fetch("https://garden.grahamslams.com/api.php");
-        const jsonData = await apiData.json();
-        
-        setProducts(jsonData.products);
-        setBestSellers(jsonData.bestSellers);
-        setGiftBoxes(jsonData.giftBoxes)
-        setForBeginners(jsonData.forBeginners)
-      } catch (error) {
-        console.error(error);
-        setProducts([]);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+    if(data){
+      setBestSellers(data.bestSellers);
+      setGiftBoxes(data.giftBoxes)
+      setForBeginners(data.forBeginners)
+    }
+    
+  }, [data]);
   return (
     <div>
       <Search />

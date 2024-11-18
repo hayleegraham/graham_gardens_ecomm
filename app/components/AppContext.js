@@ -15,11 +15,24 @@ const AppProvider = ({ children }) => {
 
   const [cartItems, setCartItems] = useState(initializeCartItems);
   const [cartQty, setCartQty] = useState(0);
+  const [products, setProducts] = useState(null);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const apiData = await fetch("https://garden.grahamslams.com/api.php");
+      const jsonData = await apiData.json();
+
+      setData(jsonData);
+      setProducts(jsonData.products);
+    };
+
+    fetchData();
+  }, []);
 
   //fires anytime cartItems is changed
   //calculates current cart qty
   useEffect(() => {
-    
     let currQty = 0;
     cartItems.forEach((item) => {
       currQty += item.qty;
@@ -51,12 +64,23 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const getProductByName = (prodName) => {
+    const prodData = products.items.find(
+      (item) => item.name === prodName
+    )
+    console.log("data context", prodData);
+    return prodData;
+  }
+
   return (
     <AppContext.Provider
       value={{
         addProduct,
         cartItems,
         cartQty,
+        data,
+        products,
+        getProductByName
       }}
     >
       {children}

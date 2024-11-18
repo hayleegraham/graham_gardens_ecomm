@@ -6,16 +6,19 @@ export default function Card({ data }) {
   const { addProduct } = useContext(AppContext);
   const [count, setCount] = useState(1);
 
-  const countUp = () =>{
+  const countUp = (e) =>{
+    e.preventDefault();
     setCount(count + 1)
 
   }
-  const countDown = () =>{
+  const countDown = (e) =>{
+    e.preventDefault();
     if(count > 0){
       setCount(count - 1)
     }
   }
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
     addProduct({...data}, count)
   }
 
