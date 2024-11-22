@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-import styles from "./page.module.css";
+import "./globals.css";
 import ProductList from "./components/ProductList";
 import Search from "./components/Search";
 import { AppContext } from "@/app/components/AppContext";
