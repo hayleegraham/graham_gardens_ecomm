@@ -23,8 +23,8 @@ export default function Card({ data }) {
   }
 
   return (
-    <div className="card xl:w-[307px] w-[282px]">
-      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image}></img>
+    <div className="card xl:w-[307px] w-[282px] xl:h-[379px]">
+      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image_1}></img>
       <h3 className="font-bold text-lg">{data.name}</h3>
       <p>Variety: {data.variety}</p>
       {data.brand && <p>Brand: {data.brand}</p>}
@@ -34,8 +34,8 @@ export default function Card({ data }) {
         <div className="pt-[2px]">{count}</div>
         <button onClick={countUp}>+</button>
       </div>
-      <button className="main_btn text-[13px]" onClick={handleAddToCart}>ADD TO CART</button>
-      <button className="main_btn text-[13px]">BUY NOW</button>
+      <button className="main_btn text-[13px] h-[25px]" onClick={handleAddToCart}>ADD TO CART</button>
+      <button className="main_btn text-[13px] h-[25px]">BUY NOW</button>
     </div>
   );
 }
