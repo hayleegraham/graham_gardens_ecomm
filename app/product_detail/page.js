@@ -20,7 +20,7 @@ export default function ProductDetail() {
     if (products && !prodData) {
       const data = getProductByName(prodName);
       setProdData(data);
-      setMainImage(data.image.productImages[1]);
+      setMainImage(data.image.productImages[0]);
       console.log("pdp imgs:", data);
     }
   }, [products]);
@@ -51,16 +51,18 @@ export default function ProductDetail() {
             {prodData.name}
           </h1>
           <div className="flex text-center sm:flex-row flex-col sm:items-start items-center justify-center gap-[50px] my-[30px] mr-[10px]">
-            <div className="flex flex-col items-center w-[500px] gap-[10px]">
+            <div className="flex flex-col items-center w-[550px] gap-[20px]">
+              <div className="shadow-xl p-5 bg-[rgba(203,226,211,0.5)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border rounded-2xl border-solid border-[rgba(203,226,211,0.6)]">
              <img
-                className="max-w-none xl:h-[380px] xl:w-[500px] sm:w-[350px] w-[280px] xl:ml-[0] ml-[10px] object-contain object-top"
+                className="max-w-none xl:h-[380px] xl:w-[500px] sm:w-[350px] w-[280px] xl:ml-[0] ml-[10px] object-contain "
                 src={mainImage}
               ></img>
-              <div className="flex flex-row flex-wrap justify-center xl:ml-[0] ml-[10px] lg:w-[500px] w-[200px]">
+              </div>
+              <div className="flex flex-row flex-wrap justify-center xl:ml-[0] ml-[10px] lg:w-[550px] w-[200px] gap-[5px]">
               {prodData.image.productImages.map((img)=> (
                 <img
                   key={img}
-                  className="max-w-none h-[100px] w-[100px] object-cover"
+                  className="max-w-none h-[100px] w-[100px] object-cover hover:shadow-xl hover:scale-110 transition-all duration-500 cursor-pointer"
                   src={img}
                   onClick={() => handleImageClick(img)} // Replace the image on click
                 ></img>

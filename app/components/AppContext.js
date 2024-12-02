@@ -22,9 +22,14 @@ const AppProvider = ({ children }) => {
     const fetchData = async () => {
       const apiData = await fetch("https://garden.grahamslams.com/api.php");
       const jsonData = await apiData.json();
-
+      //reorder images for pdp display 
+      const formatProducts = jsonData.products.items.map((product)=> {
+        //put the first image at end of array because second image is primary image for pdp
+        product.image.productImages.push(product.image.productImages.shift());
+        return product;
+      })
       setData(jsonData);
-      setProducts(jsonData.products);
+      setProducts(formatProducts);
       console.log("api data:", jsonData)
     };
 
@@ -65,11 +70,12 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  //when card on homepage is clicked, return data for clicked item
   const getProductByName = (prodName) => {
-    const prodData = products.items.find(
+    const prodData = products.find(
       (item) => item.name === prodName
     )
-    console.log("data context", prodData);
+    console.log("product data from context", prodData);
     return prodData;
   }
 
