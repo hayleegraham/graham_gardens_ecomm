@@ -20,8 +20,8 @@ export default function ProductDetail() {
     if (products && !prodData) {
       const data = getProductByName(prodName);
       setProdData(data);
-      setMainImage(data.image_3);
-      console.log("products pdp:", data);
+      setMainImage(data.image.productImages[1]);
+      console.log("pdp imgs:", data);
     }
   }, [products]);
 
@@ -51,44 +51,20 @@ export default function ProductDetail() {
             {prodData.name}
           </h1>
           <div className="flex text-center sm:flex-row flex-col sm:items-start items-center justify-center gap-[50px] my-[30px] mr-[10px]">
-            <div className="flex flex-col items-center w-[500px] gap-[30px]">
-              <img
-                className="max-w-none xl:max-h-[500px] xl:w-[500px] sm:w-[350px] w-[280px] xl:ml-[0] ml-[10px] object-contain"
+            <div className="flex flex-col items-center w-[500px] gap-[10px]">
+             <img
+                className="max-w-none xl:h-[380px] xl:w-[500px] sm:w-[350px] w-[280px] xl:ml-[0] ml-[10px] object-contain object-top"
                 src={mainImage}
               ></img>
-              <div className="flex flex-row flex-wrap xl:justify-start justify-center xl:ml-[0] ml-[10px] lg:w-[500px] w-[200px]">
+              <div className="flex flex-row flex-wrap justify-center xl:ml-[0] ml-[10px] lg:w-[500px] w-[200px]">
+              {prodData.image.productImages.map((img)=> (
                 <img
+                  key={img}
                   className="max-w-none h-[100px] w-[100px] object-cover"
-                  src={prodData.image_3}
-                  onClick={() => handleImageClick(prodData.image_3)} // Replace the image on click
+                  src={img}
+                  onClick={() => handleImageClick(img)} // Replace the image on click
                 ></img>
-                <img
-                  className="max-w-none h-[100px] w-[100px] object-cover"
-                  src={prodData.image_2}
-                  onClick={() => handleImageClick(prodData.image_2)} // Replace the image on click
-                ></img>
-
-                {prodData.image_4 && (
-                  <img
-                    className="max-w-none h-[100px] w-[100px] object-cover"
-                    src={prodData.image_4}
-                    onClick={() => handleImageClick(prodData.image_4)} // Replace the image on click
-                  ></img>
-                )}
-                {prodData.image_5 && (
-                  <img
-                    className="max-w-none h-[100px] w-[100px] object-cover"
-                    src={prodData.image_5}
-                    onClick={() => handleImageClick(prodData.image_5)} // Replace the image on click
-                  ></img>
-                )}
-                {prodData.image_6 && (
-                  <img
-                    className="max-w-none h-[100px] w-[100px] object-cover"
-                    src={prodData.image_6}
-                    onClick={() => handleImageClick(prodData.image_6)} // Replace the image on click
-                  ></img>
-                )}
+              ))}
               </div>
             </div>
             <div className="flex text-left sm:items-start items-center flex-col gap-[15px] sm:w-[670px] w-[300px] sm:p-[0] px-[10px]">

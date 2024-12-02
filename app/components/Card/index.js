@@ -21,10 +21,9 @@ export default function Card({ data }) {
     e.preventDefault();
     addProduct({...data}, count)
   }
-
   return (
     <div className="card xl:w-[307px] w-[282px] xl:h-[379px]">
-      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image_1}></img>
+      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image.mainImage}></img>
       <h3 className="font-bold text-lg">{data.name}</h3>
       <p>Variety: {data.variety}</p>
       {data.brand && <p>Brand: {data.brand}</p>}

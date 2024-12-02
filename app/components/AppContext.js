@@ -25,6 +25,7 @@ const AppProvider = ({ children }) => {
 
       setData(jsonData);
       setProducts(jsonData.products);
+      console.log("api data:", jsonData)
     };
 
     fetchData();
