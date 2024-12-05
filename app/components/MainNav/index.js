@@ -9,7 +9,7 @@ export default function MainNav() {
   const [isVisible, setIsVisible] = useState();
   const isWide = useMedia("(min-width: 768px)");
   const ref = useRef();
-  const { cartQty } = useContext(AppContext);
+  const { cartQty, setCartVisible } = useContext(AppContext);
 
   useEffect(() => {
     isWide
@@ -20,6 +20,11 @@ export default function MainNav() {
   const displayNav = () => {
     setIsVisible(!isVisible);
   };
+  
+  const displayCart = () => {
+    setCartVisible(true)
+    console.log("cart clicked, is visable")
+  }
 
   return (
     <div className="header_cont">
@@ -83,6 +88,7 @@ export default function MainNav() {
             <img
               src="/cart.png"
               className="w-[25px] h-[25px] cursor-pointer"
+              onClick={displayCart}
             ></img>
             <div>({cartQty})</div>
           </div>

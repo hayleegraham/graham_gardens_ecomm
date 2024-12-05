@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
   const [cartQty, setCartQty] = useState(0);
   const [products, setProducts] = useState(null);
   const [data, setData] = useState();
+  const [cartVisible, setCartVisible] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +88,9 @@ const AppProvider = ({ children }) => {
         cartQty,
         data,
         products,
-        getProductByName
+        getProductByName,
+        cartVisible,
+        setCartVisible
       }}
     >
       {children}
