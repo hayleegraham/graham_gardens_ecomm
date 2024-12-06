@@ -39,14 +39,14 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen`}>
         
         <AppProvider>
-        <MainNav />
-        <client-only>
-        <Cart />
-        </client-only>
-        <Suspense>
-        {children}
-        </Suspense>
-        <Footer />
+          <MainNav />
+          <client-only>
+            <Cart />
+          </client-only>
+          <Suspense>
+            {children}
+          </Suspense>
+          <Footer />
         </AppProvider>
       </body>
     </html>

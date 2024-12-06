@@ -15,6 +15,7 @@ const AppProvider = ({ children }) => {
 
   const [cartItems, setCartItems] = useState(initializeCartItems);
   const [cartQty, setCartQty] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState(null);
   const [data, setData] = useState();
   const [cartVisible, setCartVisible] = useState(false)
@@ -38,14 +39,17 @@ const AppProvider = ({ children }) => {
   }, []);
 
   //fires anytime cartItems is changed
-  //calculates current cart qty
   useEffect(() => {
+    //calculates current cart qty
     let currQty = 0;
+    let currPrice = 0;
     cartItems.forEach((item) => {
       currQty += item.qty;
+      currPrice += (item.qty * item.price);
     });
+    let formattedPrice = currPrice.toFixed(2);
     setCartQty(currQty);
-
+    setTotalPrice(formattedPrice);
     //add cart items to local storage
     window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log("Cart Items:", cartItems);
@@ -71,6 +75,11 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const removeProduct = (prodName) => {
+    setCartItems(prevItems => prevItems.filter(item => item.name !== prodName));
+
+  }
+
   //when card on homepage is clicked, return data for clicked item
   const getProductByName = (prodName) => {
     const prodData = products.find(
@@ -90,7 +99,9 @@ const AppProvider = ({ children }) => {
         products,
         getProductByName,
         cartVisible,
-        setCartVisible
+        setCartVisible,
+        totalPrice,
+        removeProduct
       }}
     >
       {children}

@@ -76,15 +76,8 @@ export default function MainNav() {
             </Link>
           </li>
         </ul>
-        <div className="flex flex-row lg:w-[300px] sm:w-[100px] w-[40px] justify-end xl:gap-[20px] gap-[15px]">
-          <img
-            src="/person.png"
-            className="w-[25px] h-[25px] cursor-pointer block lg:hidden"
-          ></img>
-          <Link className="text-base hidden lg:block" href="/">
-            LOG IN / SIGN UP
-          </Link>
-          <div className="flex flex-row">
+        <div className="flex flex-row lg:w-[300px] sm:w-[100px] w-[40px] justify-end">
+          <div className="flex flex-row gap-[5px]">
             <img
               src="/cart.png"
               className="w-[25px] h-[25px] cursor-pointer"
