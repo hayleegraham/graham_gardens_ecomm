@@ -105,7 +105,7 @@ export default function Cart() {
                 <div>${item.price}</div>
                 <button className="self-end"
                 onClick={() => removeProduct(item.name)}>
-                  <span class="material-symbols-outlined">delete</span>
+                  <span className="material-symbols-outlined">delete</span>
                </button>
               </div>
             ))}

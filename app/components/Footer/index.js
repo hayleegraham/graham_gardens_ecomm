@@ -1,6 +1,6 @@
 import "./Footer.scss";
 
-export default function MainNav() {
+export default function Footer() {
     return(
         <div className="footer_cont flex sm:flex-row flex-col justify-center py-[10px] xl:gap-[150px] sm:gap-[50px] gap-[20px] sm:h-[108px] h-[310px] content-center flex-wrap">
             

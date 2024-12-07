@@ -1,13 +1,10 @@
 'use client'
  
-
- 
 import React, { useState, useEffect, useContext } from "react";
 import "./globals.css";
 import ProductList from "./components/ProductList";
 import Search from "./components/Search";
 import { AppContext } from "@/app/components/AppContext";
-//import Cart from "./components/Cart";
 
 export default function Home() {
  

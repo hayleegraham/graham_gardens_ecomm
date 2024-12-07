@@ -10,7 +10,6 @@ export default function Checkout() {
     return item.name ;
   })
   const checkoutProducts = checkoutProductsArr.join(", ");
-  console.log("checkout items", checkoutProducts)
   const onCreateOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [

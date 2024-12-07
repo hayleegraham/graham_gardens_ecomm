@@ -29,7 +29,7 @@ export default function MainNav() {
   return (
     <div className="header_cont">
       <div className="offers text-base font-bold text-center lg:block hidden">
-        FREE SHIPPING & 10% OFF FIRST ORDER FOR SUBSCRIBERS
+        FREE SHIPPING FOR ORDERS OVER $25
       </div>
       <div
         className="flex flex-row xl:justify-between justify-center nav_cont items-center px-[50px] md:h-[74px]"
@@ -56,22 +56,22 @@ export default function MainNav() {
           ref={ref}
         >
           <li>
-            <Link className="text-base" href="/">
+            <Link className="text-base" href="/shop_seeds">
               SHOP SEEDS
             </Link>
           </li>
           <li>
-            <Link className="text-base" href="/about">
+            <Link className="text-base" href="/contact">
               CONTACT US
             </Link>
           </li>
           <li>
-            <Link className="text-base" href="/about">
+            <Link className="text-base" href="/">
               SUBSCRIBE
             </Link>
           </li>
           <li>
-            <Link className="text-base" href="/about">
+            <Link className="text-base" href="/">
               GARDENING GUIDE
             </Link>
           </li>
