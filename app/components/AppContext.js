@@ -1,5 +1,6 @@
 "use client";
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useRef } from "react";
+import Fuse from 'fuse.js';
 
 const AppContext = createContext();
 
@@ -19,7 +20,12 @@ const AppProvider = ({ children }) => {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [data, setData] = useState();
-  const [cartVisible, setCartVisible] = useState(false)
+  const [cartVisible, setCartVisible] = useState(false);
+  const [displayedSeeds, setDisplayedSeeds] = useState([]);
+  const [searchVal, setSearchVal] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const fuse = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +40,15 @@ const AppProvider = ({ children }) => {
       setData(jsonData);
       setProducts(formatProducts);
       setCategories(jsonData.categories);
-      console.log("api data:", jsonData)
+      setDisplayedSeeds(jsonData.products.items);
+
+      const options = {
+        includeScore: true,
+        keys: ['name']
+      }
+      
+      fuse.current = new Fuse(jsonData.products.items, options)
+      console.log("api data:", jsonData.products.items)
     };
 
     fetchData();
@@ -91,6 +105,36 @@ const AppProvider = ({ children }) => {
     return prodData;
   }
 
+  const filterByCategory = (category) => {
+    const filteredSeeds = data.products.items.filter((item) => {
+      if (category === "") return true;
+      return item.cat_id == category;
+    });
+    setDisplayedSeeds(filteredSeeds);
+    setSearchVal("");
+  }
+
+  const filterBySearch = (searchVal) => {
+    setErrorMsg("");
+    const result = fuse.current.search(searchVal)
+    const searchResults = result.map((searchItem) => {
+      return searchItem.item;
+    })
+    if(!result.length) {
+      setErrorMsg("We didn't find anything, here's our best sellers.")
+      return setDisplayedSeeds(data.bestSellers.items)
+      
+    }
+    setDisplayedSeeds(searchResults);
+    console.log("results", searchResults)
+  }
+
+  const resetSearch = () => {
+    setSearchVal("");
+    setDisplayedSeeds(data.products.items);
+    setErrorMsg("")
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -104,7 +148,14 @@ const AppProvider = ({ children }) => {
         cartVisible,
         setCartVisible,
         totalPrice,
-        removeProduct
+        removeProduct,
+        displayedSeeds,
+        filterByCategory,
+        filterBySearch,
+        setSearchVal,
+        searchVal,
+        resetSearch,
+        errorMsg
       }}
     >
       {children}

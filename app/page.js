@@ -8,7 +8,7 @@ import { AppContext } from "@/app/components/AppContext";
 
 export default function Home() {
  
-  const { data } = useContext(AppContext);
+  const { data, resetSearch } = useContext(AppContext);
   const [bestSellers, setBestSellers] = useState([]);
   const [giftBoxes, setGiftBoxes] = useState([]);
   const [forBeginners, setForBeginners] = useState([]);
@@ -18,6 +18,7 @@ export default function Home() {
       setBestSellers(data.bestSellers);
       setGiftBoxes(data.giftBoxes)
       setForBeginners(data.forBeginners)
+      resetSearch()
     }
     
   }, [data]);

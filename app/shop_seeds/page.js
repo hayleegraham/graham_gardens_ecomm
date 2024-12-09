@@ -7,26 +7,13 @@ import Link from "next/link";
 import Search from "../components/Search";
 
 export default function ShopSeeds() {
-  const { data, categories } = useContext(AppContext);
-  const [allSeeds, setAllSeeds] = useState([]);
-  const [displayedSeeds, setDisplayedSeeds] = useState([]);
+  const { categories, displayedSeeds, filterByCategory, data, errorMsg } = useContext(AppContext);
 
   //filter by category when dropdown option is selected
   const handleChange = (event) => {
     const currCategory = event.target.value;
-    const filteredSeeds = allSeeds.items.filter((item) => {
-      if (currCategory === "") return true;
-      return item.cat_id == currCategory;
-    });
-    setDisplayedSeeds(filteredSeeds);
+    filterByCategory(currCategory);
   };
-
-  useEffect(() => {
-    if (data) {
-      setAllSeeds(data.products);
-      setDisplayedSeeds(data.products.items);
-    }
-  }, [data]);
 
   return (
     <div className="felx flex-col mx-auto">
@@ -43,7 +30,8 @@ export default function ShopSeeds() {
         </select>
       </div>
       <div className="mx-auto xl:w-[1041px] xl:h-[2160px]">
-        <h2 className="font-bold text-2xl text-center">{allSeeds.title}</h2>
+        <h2 className="font-bold text-2xl text-center">{data?.products?.title}</h2>
+        {errorMsg && <p>{errorMsg}</p>}
         <div className="relative flex justify-center xl:block">
           <div className="flex absolute left-0 flex-wrap">
             {displayedSeeds?.map((seed) => (

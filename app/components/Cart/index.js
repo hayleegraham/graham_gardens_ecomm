@@ -12,7 +12,7 @@ export default function Cart() {
     intent: "capture",
   };
   const { cartVisible, setCartVisible, cartItems, totalPrice, removeProduct } = useContext(AppContext);
-  let drawer = useRef();
+  const drawer = useRef();
 
   const options = {
     placement: "right",
