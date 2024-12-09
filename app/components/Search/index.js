@@ -1,4 +1,6 @@
 import "./Search.scss";
+import Fuse from 'fuse.js';
+import { AppContext } from "@/app/components/AppContext";
 
 export default function Search() {
   return (

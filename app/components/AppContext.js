@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
   const [cartQty, setCartQty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [data, setData] = useState();
   const [cartVisible, setCartVisible] = useState(false)
 
@@ -32,6 +33,7 @@ const AppProvider = ({ children }) => {
       })
       setData(jsonData);
       setProducts(formatProducts);
+      setCategories(jsonData.categories);
       console.log("api data:", jsonData)
     };
 
@@ -97,6 +99,7 @@ const AppProvider = ({ children }) => {
         cartQty,
         data,
         products,
+        categories,
         getProductByName,
         cartVisible,
         setCartVisible,
