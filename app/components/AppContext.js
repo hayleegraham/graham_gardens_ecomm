@@ -23,6 +23,7 @@ const AppProvider = ({ children }) => {
   const [cartVisible, setCartVisible] = useState(false);
   const [displayedSeeds, setDisplayedSeeds] = useState([]);
   const [searchVal, setSearchVal] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
   const fuse = useRef();
@@ -37,6 +38,14 @@ const AppProvider = ({ children }) => {
         product.image.productImages.push(product.image.productImages.shift());
         return product;
       })
+      const dataWithCategories = jsonData.products.items.map((product)=> {
+        const foundCatName = jsonData.categories.filter((category) => {
+          return category.cat_id == product.cat_id
+        })
+        let catName = foundCatName[0].cat_name == "Veggies" ? "Veggies Vegetables" : foundCatName[0].cat_name
+        product.cat_name = catName;
+        return product;
+      })
       setData(jsonData);
       setProducts(formatProducts);
       setCategories(jsonData.categories);
@@ -44,11 +53,11 @@ const AppProvider = ({ children }) => {
 
       const options = {
         includeScore: true,
-        keys: ['name']
+        threshold: 0.4,
+        keys: ['name', 'brand', 'variety', 'cat_name']
       }
-      
-      fuse.current = new Fuse(jsonData.products.items, options)
-      console.log("api data:", jsonData.products.items)
+      fuse.current = new Fuse(dataWithCategories, options)
+      console.log("api data:", dataWithCategories)
     };
 
     fetchData();
@@ -96,6 +105,10 @@ const AppProvider = ({ children }) => {
 
   }
 
+  const resetCart = () => {
+    setCartItems([]);
+  }
+
   //when card on homepage is clicked, return data for clicked item
   const getProductByName = (prodName) => {
     const prodData = products.find(
@@ -112,10 +125,12 @@ const AppProvider = ({ children }) => {
     });
     setDisplayedSeeds(filteredSeeds);
     setSearchVal("");
+    setErrorMsg("");
   }
 
   const filterBySearch = (searchVal) => {
     setErrorMsg("");
+    setSelectedCategory("");
     const result = fuse.current.search(searchVal)
     const searchResults = result.map((searchItem) => {
       return searchItem.item;
@@ -126,7 +141,6 @@ const AppProvider = ({ children }) => {
       
     }
     setDisplayedSeeds(searchResults);
-    console.log("results", searchResults)
   }
 
   const resetSearch = () => {
@@ -155,7 +169,10 @@ const AppProvider = ({ children }) => {
         setSearchVal,
         searchVal,
         resetSearch,
-        errorMsg
+        errorMsg,
+        resetCart,
+        setSelectedCategory,
+        selectedCategory
       }}
     >
       {children}

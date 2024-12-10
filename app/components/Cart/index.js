@@ -22,6 +22,7 @@ export default function Cart() {
     edgeOffset: "",
     backdropClasses: "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30",
     onHide: () => {
+      setCartVisible(false);
       console.log("drawer is hidden");
     },
     onShow: () => {
@@ -46,6 +47,8 @@ export default function Cart() {
   useEffect(() => {
     if(cartVisible == true){
       showDrawer();
+    }else{
+      hideDrawer();
     }
   }, [cartVisible])
 
@@ -55,7 +58,9 @@ export default function Cart() {
 
   const hideDrawer = () => {
     drawer.current.hide();
-    setCartVisible(false);
+    if(cartVisible == true){
+      setCartVisible(false);
+    }
   }
 
   return (

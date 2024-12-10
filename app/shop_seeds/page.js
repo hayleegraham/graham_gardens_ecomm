@@ -7,11 +7,12 @@ import Link from "next/link";
 import Search from "../components/Search";
 
 export default function ShopSeeds() {
-  const { categories, displayedSeeds, filterByCategory, data, errorMsg } = useContext(AppContext);
+  const { categories, displayedSeeds, filterByCategory, data, errorMsg, selectedCategory, setSelectedCategory } = useContext(AppContext);
 
   //filter by category when dropdown option is selected
   const handleChange = (event) => {
     const currCategory = event.target.value;
+    setSelectedCategory(currCategory);
     filterByCategory(currCategory);
   };
 
@@ -20,7 +21,7 @@ export default function ShopSeeds() {
       <Search />
       <div>
         <label htmlFor="categories">Select a Category:</label>
-        <select id="categories" name="categories" onChange={handleChange}>
+        <select id="categories" name="categories" value={selectedCategory} onChange={handleChange}>
           <option value="">All Seeds</option>
           {categories?.map((category) => (
             <option key={category.cat_id} value={category.cat_id}>

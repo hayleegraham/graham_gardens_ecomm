@@ -6,14 +6,12 @@ import { useRouter } from 'next/navigation';
 export default function Search() {
   const { filterBySearch, searchVal, setSearchVal } = useContext(AppContext);
   const router = useRouter();
-  // const currentRoute = router.pathname;
   
   const searchClicked = () => {
     if(!searchVal) return
     filterBySearch(searchVal)
     if(window.location.pathname == "/"){
       router.push("/shop_seeds")
-      console.log(window.location.pathname)
     }
   }
 
