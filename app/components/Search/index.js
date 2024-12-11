@@ -4,12 +4,13 @@ import React, { useState, useContext } from "react";
 import { useRouter } from 'next/navigation';
 
 export default function Search() {
-  const { filterBySearch, searchVal, setSearchVal } = useContext(AppContext);
+  const { filterBySearch, searchVal, setSearchVal, setCategoryName } = useContext(AppContext);
   const router = useRouter();
   
   const searchClicked = () => {
     if(!searchVal) return
-    filterBySearch(searchVal)
+    filterBySearch(searchVal);
+    setCategoryName("RESULTS:")
     if(window.location.pathname == "/"){
       router.push("/shop_seeds")
     }
@@ -20,7 +21,7 @@ export default function Search() {
       <label htmlFor="search">SEARCH SEEDS:</label>
       <input onChange={e => setSearchVal(e.target.value)} className="search_input w-[150px] sm:w-[300px]" type="text" id="search" name="search" value={searchVal}/>
 
-      <input onClick={searchClicked} className="main_btn text-[13px] px-[10px] py-[5px]" type="button" value="SEARCH"/>
+      <input onClick={searchClicked} className="search_btn text-[13px] px-[10px] py-[5px] hover:scale-105 cursor-pointer" type="button" value="SEARCH"/>
     </div>
   );
 }

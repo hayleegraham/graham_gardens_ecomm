@@ -25,6 +25,7 @@ const AppProvider = ({ children }) => {
   const [searchVal, setSearchVal] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [categoryName, setCategoryName] = useState('');
 
   const fuse = useRef();
 
@@ -50,7 +51,7 @@ const AppProvider = ({ children }) => {
       setProducts(formatProducts);
       setCategories(jsonData.categories);
       setDisplayedSeeds(jsonData.products.items);
-
+      setCategoryName(jsonData.products.title);
       const options = {
         includeScore: true,
         threshold: 0.4,
@@ -136,7 +137,7 @@ const AppProvider = ({ children }) => {
       return searchItem.item;
     })
     if(!result.length) {
-      setErrorMsg("We didn't find anything, here's our best sellers.")
+      setErrorMsg("Oops! We didn't find anything, but have a look at our Best Sellers!")
       return setDisplayedSeeds(data.bestSellers.items)
       
     }
@@ -172,7 +173,9 @@ const AppProvider = ({ children }) => {
         errorMsg,
         resetCart,
         setSelectedCategory,
-        selectedCategory
+        selectedCategory,
+        categoryName,
+        setCategoryName
       }}
     >
       {children}
