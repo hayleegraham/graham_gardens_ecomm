@@ -7,42 +7,59 @@ import Link from "next/link";
 import Search from "../components/Search";
 
 export default function ShopSeeds() {
-  const { categories, displayedSeeds, filterByCategory, errorMsg, selectedCategory, setSelectedCategory, data, categoryName, setCategoryName, searchVal } = useContext(AppContext);
-  
+  const {
+    categories,
+    displayedSeeds,
+    filterByCategory,
+    errorMsg,
+    selectedCategory,
+    setSelectedCategory,
+    data,
+    categoryName,
+    setCategoryName,
+    searchVal,
+  } = useContext(AppContext);
+
   useEffect(() => {
-    setSelectedCategory('');
-    if(!searchVal){
-        setCategoryName(data?.products?.title)
+    setSelectedCategory("");
+    if (!searchVal) {
+      setCategoryName(data?.products?.title);
     }
-  }, [])
+  }, []);
 
   //filter by category when dropdown option is selected
   const handleChange = (event) => {
     const currCategory = event.target.value;
     const currCatName = categories.filter((category) => {
-            return category.cat_id == currCategory
-    })
-    if(currCatName[0]) {
-        setCategoryName(currCatName[0].cat_name.toUpperCase());
-    }else{
-        setCategoryName(data?.products?.title)
+      return category.cat_id == currCategory;
+    });
+    if (currCatName[0]) {
+      setCategoryName(currCatName[0].cat_name.toUpperCase());
+    } else {
+      setCategoryName(data?.products?.title);
     }
     setSelectedCategory(currCategory);
     filterByCategory(currCategory);
   };
 
   useEffect(() => {
-    if(errorMsg){
-        setCategoryName("")
+    if (errorMsg) {
+      setCategoryName("");
     }
-  }, [errorMsg])
+  }, [errorMsg]);
 
   return (
     <div className="felx flex-col mx-auto">
       <Search />
       <div>
         <label htmlFor="categories">Select a Category:</label>
-        <select className="mx-[10px] my-[8px] rounded py-1 pl-4 !pr-8 cursor-pointer" id="categories" name="categories" value={selectedCategory} onChange={handleChange}>
+        <select
+          className="mx-[10px] my-[8px] rounded py-1 pl-4 !pr-8 cursor-pointer"
+          id="categories"
+          name="categories"
+          value={selectedCategory}
+          onChange={handleChange}
+        >
           <option value="">All Seeds</option>
           {categories?.map((category) => (
             <option key={category.cat_id} value={category.cat_id}>
