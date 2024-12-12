@@ -23,7 +23,7 @@ export default function MainNav() {
   
   const displayCart = () => {
     setCartVisible(true)
-    console.log("cart clicked, is visable")
+    //console.log("cart clicked, is visable")
   }
 
   return (

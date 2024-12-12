@@ -34,13 +34,13 @@ export default function Cart() {
     backdropClasses: "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30",
     onHide: () => {
       setCartVisible(false);
-      console.log("drawer is hidden");
+      //console.log("drawer is hidden");
     },
     onShow: () => {
-      console.log("drawer is shown");
+      //console.log("drawer is shown");
     },
     onToggle: () => {
-      console.log("drawer has been toggled");
+      //console.log("drawer has been toggled");
     },
   };
   const instanceOptions = {
@@ -63,7 +63,7 @@ export default function Cart() {
 
   const showDrawer = () => {
     drawer.current.show();
-    console.log("Buy Now:", buyNowItem);
+    //console.log("Buy Now:", buyNowItem);
   };
 
   const hideDrawer = () => {

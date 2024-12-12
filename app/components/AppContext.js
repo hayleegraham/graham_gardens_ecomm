@@ -60,7 +60,7 @@ const AppProvider = ({ children }) => {
         keys: ['name', 'brand', 'variety', 'cat_name']
       }
       fuse.current = new Fuse(dataWithCategories, options)
-      console.log("api data:", dataWithCategories)
+      //console.log("api data:", dataWithCategories)
     };
 
     fetchData();
@@ -87,7 +87,7 @@ const AppProvider = ({ children }) => {
     setTotalPrice(formattedPrice);
     //add cart items to local storage
     window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    console.log("Cart Items:", cartItems);
+    //console.log("Cart Items:", cartItems);
   }, [cartItems, shippingPrice]);
 
   const addProduct = (product, qty) => {
@@ -150,7 +150,7 @@ const AppProvider = ({ children }) => {
     const prodData = products.find(
       (item) => item.name === prodName
     )
-    console.log("product data from context", prodData);
+    //console.log("product data from context", prodData);
     return prodData;
   }
 

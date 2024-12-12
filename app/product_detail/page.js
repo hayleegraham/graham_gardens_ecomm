@@ -21,7 +21,7 @@ export default function ProductDetail() {
       const data = getProductByName(prodName);
       setProdData(data);
       setMainImage(data.image.productImages[0]);
-      console.log("pdp imgs:", data);
+      //console.log("pdp imgs:", data);
     }
   }, [products]);
 
