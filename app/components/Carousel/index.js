@@ -13,29 +13,29 @@ export default function Carousel() {
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000 
+    autoplaySpeed: 3500 
   };
   
   return (
-    <div className="my-[20px]">
-          <Slider {...settings} className="w-[1024px] h-[529px]">
-            <div className="w-[1024px] h-[529px]">
+    <div className="my-[20px] flex flex-col items-center">
+          <Slider {...settings} className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
+            <div className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
               <img src="/about1.jpg" className="object-contain"></img>
             </div>
-            <div className="w-[1024px] h-[529px]">
+            <div className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
               <img src="/about2.jpg" className="object-contain"></img>
             </div>
-            <div className="w-[1024px] h-[529px]">
+            <div className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
               <img src="/about3.jpg" className="object-contain"></img>
             </div>
-            <div className="w-[1024px] h-[529px]">
+            <div className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
               <img src="/about4.jpg" className="object-contain"></img>
             </div>
-            <div className="w-[1024px] h-[529px]">
+            <div className="xl:w-[1024px] xl:h-[529px] sm:w-[512px] sm:h-[264.5px] w-[256px] h-[132px]">
               <img src="/about5.jpg" className="object-contain"></img>
             </div>
           </Slider>
