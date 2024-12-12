@@ -137,7 +137,7 @@ const AppProvider = ({ children }) => {
     const currPrice = (buyNowItem.qty * buyNowItem.price);
     if(currPrice < 25){
       setShippingPrice(2.99);
-      formattedPrice = (currPrice + shippingPrice).toFixed(2);
+      formattedPrice = (currPrice + shippingPrice).currTotalPrice.current;
     }else{
       setShippingPrice(0);
       formattedPrice = currPrice.toFixed(2);

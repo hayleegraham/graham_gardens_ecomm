@@ -66,7 +66,7 @@ export default function MainNav() {
             </Link>
           </li>
           <li>
-            <Link className="text-base" href="/">
+            <Link className="text-base" href="/guide">
               GARDENING GUIDE
             </Link>
           </li>

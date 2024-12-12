@@ -68,7 +68,7 @@ export default function ShopSeeds() {
           ))}
         </select>
       </div>
-      <div className="mx-auto xl:w-[1041px] xl:h-[2155px]">
+      <div className="mx-auto xl:w-[1041px] xl:h-[2150px]">
         <h2 className="font-bold text-2xl text-center">{categoryName}</h2>
         {errorMsg && <p className="text-center">{errorMsg}</p>}
         <div className="relative flex justify-center xl:block">
