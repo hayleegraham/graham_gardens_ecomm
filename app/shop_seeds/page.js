@@ -62,7 +62,9 @@ export default function ShopSeeds() {
     } else {
       if (displayedSeeds.length < 6 && displayedSeeds.length > 3) {
         setVarHeight((displayedSeeds.length / 2) * 419 + 185);
-      } else {
+      } else if(displayedSeeds.length < 3){
+        setVarHeight(419 + 185);
+      }else{
         setVarHeight((displayedSeeds.length / 3) * 419 + 185);
       }
     }
