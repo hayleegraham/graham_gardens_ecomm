@@ -30,7 +30,7 @@ export default function Card({ data }) {
 
   return (
     <div className="card xl:w-[306.5px] w-[282px] xl:h-[379px]">
-      <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image.mainImage}></img>
+      <img className="max-w-none h-[185px] xl:w-[305px] w-[280.5px]" src={data.image.mainImage} alt={data.image.mainImage}></img>
       <h3 className="font-bold text-lg">{data.name}</h3>
       <p>Variety: {data.variety}</p>
       {data.brand && <p>Brand: {data.brand}</p>}

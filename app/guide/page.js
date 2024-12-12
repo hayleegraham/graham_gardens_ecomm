@@ -1,7 +1,6 @@
 import Link from "next/link";
-import "./guide.scss";
 
-export default function Contact() {
+export default function Guide() {
   return (
     <div className="flex flex-col xl:w-[1024px] sm:w-[515px] w-[258px] justify-center mx-auto my-[25px] gap-[15px] ">
         <h2 className="font-bold text-center text-2xl">
@@ -9,7 +8,7 @@ export default function Contact() {
       </h2>
       
       <div className="flex xl:flex-row flex-col xl:w-[1024px] sm:w-[515px] w-[258px] justify-center items-center mx-auto my-[10px] gap-[10px] ">
-        <h4 className="font-bold">Quick Links:</h4>
+        <h3 className="font-bold">Quick Links:</h3>
         <ul className="pl-[20px] flex xl:flex-row flex-col xl:gap-[15px] gap-[10px] underline text-sm pt-[3px]">
           <li>
             <Link href="#hardiness">HARDINESS ZONES</Link>

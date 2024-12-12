@@ -35,6 +35,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         />
+        <title>Graham Gardens</title>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen`}>
         

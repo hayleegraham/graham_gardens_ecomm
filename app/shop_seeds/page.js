@@ -49,7 +49,7 @@ export default function ShopSeeds() {
   }, [errorMsg]);
 
   return (
-    <div className="felx flex-col mx-auto">
+    <div className="flex flex-col mx-auto">
       <Search />
       <div>
         <label htmlFor="categories">Select a Category:</label>
@@ -68,7 +68,7 @@ export default function ShopSeeds() {
           ))}
         </select>
       </div>
-      <div className="mx-auto xl:w-[1041px] xl:h-[2150px]">
+      <div className="mx-auto xl:w-[1041px] xl:h-[2150px] w-[310px] h-[6450px]">
         <h2 className="font-bold text-2xl text-center">{categoryName}</h2>
         {errorMsg && <p className="text-center">{errorMsg}</p>}
         <div className="relative flex justify-center xl:block">

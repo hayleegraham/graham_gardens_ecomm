@@ -32,12 +32,12 @@ export default function MainNav() {
         FREE SHIPPING FOR ORDERS OVER $25
       </div>
       <div
-        className="flex flex-row xl:justify-between justify-center nav_cont items-center px-[50px] md:h-[74px]"
+        className="flex flex-row xl:justify-between  justify-center nav_cont items-center px-[50px] md:h-[74px]"
         style={{ height: isVisible ? "174px" : "74px" }}
       >
         <div className="xl:flex flex-row items-center gap-[20px] w-[300px] hidden">
           <div className="circle">
-            <img src="/flower_growing.gif"></img>
+            <img src="/flower_growing.gif" alt="flower growing animation"></img>
           </div>
           <h1 className="text-[25px] font-bold">
             <Link href="/">
@@ -47,6 +47,7 @@ export default function MainNav() {
         </div>
         <img
           src="/hamburger.png"
+          alt="click to open or close menu"
           className="md:hidden block mr-[40px] w-[25px] h-[25px] cursor-pointer"
           onClick={displayNav}
         ></img>
@@ -71,10 +72,11 @@ export default function MainNav() {
             </Link>
           </li>
         </ul>
-        <div className="flex flex-row lg:w-[300px] sm:w-[100px] w-[40px] justify-end">
+        <div className="flex flex-row xl:w-[300px] sm:w-[100px] w-[40px] justify-end">
           <div className="flex flex-row gap-[5px]">
             <img
               src="/cart.png"
+              alt="shopping cart"
               className="w-[25px] h-[25px] cursor-pointer"
               onClick={displayCart}
             ></img>
