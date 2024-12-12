@@ -40,8 +40,8 @@ export default function Card({ data }) {
         <div className="pt-[2px]">{count}</div>
         <button onClick={countUp}>+</button>
       </div>
-      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105" onClick={handleAddToCart}>ADD TO CART</button>
-      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105" onClick={handleBuyNow}>BUY NOW</button>
+      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105 active:scale-95" onClick={handleAddToCart}>ADD TO CART</button>
+      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105 active:scale-95" onClick={handleBuyNow}>BUY NOW</button>
     </div>
   );
 }

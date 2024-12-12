@@ -3,15 +3,26 @@ import { useEffect, useContext, useRef } from "react";
 import { Drawer } from "flowbite";
 import { AppContext } from "@/app/components/AppContext";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import Checkout from '@/app/components/Checkout';
+import Checkout from "@/app/components/Checkout";
 
 export default function Cart() {
   const initialOptions = {
-    "client-id": "AaC6E4A48eQHxuQ-VJAWU0AVh8mIkcof2KyhbUzqNDIOyNZO9P0BjYE_atEUgOo_fqMic1YXQ6dEOhWZ",
+    "client-id":
+      "AaC6E4A48eQHxuQ-VJAWU0AVh8mIkcof2KyhbUzqNDIOyNZO9P0BjYE_atEUgOo_fqMic1YXQ6dEOhWZ",
     currency: "USD",
     intent: "capture",
   };
-  const { cartVisible, setCartVisible, cartItems, totalPrice, removeProduct, buyNowItem, buyNowPrice, removeBuyNow } = useContext(AppContext);
+  const {
+    cartVisible,
+    setCartVisible,
+    cartItems,
+    totalPrice,
+    removeProduct,
+    buyNowItem,
+    buyNowPrice,
+    removeBuyNow,
+    shippingPrice,
+  } = useContext(AppContext);
   const drawer = useRef();
 
   const options = {
@@ -38,47 +49,52 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    
     const $targetEl = document.getElementById("drawer-right-example");
     drawer.current = new Drawer($targetEl, options, instanceOptions);
-
   }, []);
- 
+
   useEffect(() => {
-    if(cartVisible == true){
+    if (cartVisible == true) {
       showDrawer();
-    }else{
+    } else {
       hideDrawer();
     }
-  }, [cartVisible])
+  }, [cartVisible]);
 
   const showDrawer = () => {
-    drawer.current.show()
-    console.log("Buy Now:", buyNowItem)
-  }
+    drawer.current.show();
+    console.log("Buy Now:", buyNowItem);
+  };
 
   const hideDrawer = () => {
     drawer.current.hide();
-    if(cartVisible == true){
+    if (cartVisible == true) {
       setCartVisible(false);
     }
-  }
+  };
 
   return (
-      
-      <>
+    <>
       {/* drawer component */}
-        <div
+      <div
         id="drawer-right-example"
         className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-96 dark:bg-gray-800"
         tabIndex="-1"
         aria-labelledby="drawer-right-label"
       >
         <div className="inline-flex items-center mb-4 h-[36px] text-xl font-semibold bg-[#cbe2d3] w-full">
-          {!buyNowItem && <h4 id="drawer-right-label" className="pl-[6px]">Cart</h4>}
-          {buyNowItem && <h4 id="drawer-right-label" className="pl-[6px]">Buy Now</h4>}
+          {!buyNowItem && (
+            <h4 id="drawer-right-label" className="pl-[6px]">
+              Cart
+            </h4>
+          )}
+          {buyNowItem && (
+            <h4 id="drawer-right-label" className="pl-[6px]">
+              Buy Now
+            </h4>
+          )}
           <button
-          onClick={hideDrawer}
+            onClick={hideDrawer}
             type="button"
             data-drawer-hide="drawer-right-example"
             aria-controls="drawer-right-example"
@@ -102,42 +118,51 @@ export default function Cart() {
           </button>
         </div>
         <div className="flex flex-col gap-4">
-        {!buyNowItem && cartItems?.map((item) => (
+          {!buyNowItem &&
+            cartItems?.map((item) => (
               <div
-              key={item.name}
-              className="flex flex-row justify-between gap-[10px] px-[12px]">
-                <div className="w-[178px]">{item.name}</div> 
-                <div>x {item.qty}</div> 
+                key={item.name}
+                className="flex flex-row justify-between gap-[10px] px-[12px]"
+              >
+                <div className="w-[178px]">{item.name}</div>
+                <div>x {item.qty}</div>
                 <div>${item.price}</div>
-                <button className="self-end"
-                onClick={() => removeProduct(item.name)}>
+                <button
+                  className="self-end"
+                  onClick={() => removeProduct(item.name)}
+                >
                   <span className="material-symbols-outlined">delete</span>
-               </button>
+                </button>
               </div>
             ))}
-            {buyNowItem && 
-              <div
+          {buyNowItem && (
+            <div
               key={buyNowItem.name}
-              className="flex flex-row justify-between gap-[10px] px-[12px]">
-                <div className="w-[178px]">{buyNowItem.name}</div> 
-                <div>x {buyNowItem.qty}</div> 
-                <div>${buyNowItem.price}</div>
-                <button className="self-end"
-                onClick={() => removeBuyNow()}>
-                  <span className="material-symbols-outlined">delete</span>
-               </button>
-              </div>
-           }
-            <hr></hr>
-            <div className="flex flex-row gap-[10px] mb-[20px] pl-[10px] font-semibold">
-              <div className="">Subtotal:</div>
-              {!buyNowItem && <div>${totalPrice}</div>}
-              {buyNowItem && <div>${buyNowPrice}</div>}
+              className="flex flex-row justify-between gap-[10px] px-[12px]"
+            >
+              <div className="w-[178px]">{buyNowItem.name}</div>
+              <div>x {buyNowItem.qty}</div>
+              <div>${buyNowItem.price}</div>
+              <button className="self-end" onClick={() => removeBuyNow()}>
+                <span className="material-symbols-outlined">delete</span>
+              </button>
             </div>
+          )}
+          {cartItems?.length > 0 || buyNowItem ? <div className="flex flex-row gap-[10px] px-[12px]">
+            Shipping: 
+             <div>${shippingPrice}</div>
+          </div> : ""
+          }
+          <hr></hr>
+          <div className="flex flex-row gap-[10px] mb-[20px] pl-[10px] font-semibold">
+            <div>Subtotal:</div>
+            {!buyNowItem && <div>${totalPrice}</div>}
+            {buyNowItem && <div>${buyNowPrice}</div>}
+          </div>
         </div>
-      <PayPalScriptProvider options={initialOptions}>
+        <PayPalScriptProvider options={initialOptions}>
           <Checkout />
-      </PayPalScriptProvider>
+        </PayPalScriptProvider>
       </div>
     </>
   );

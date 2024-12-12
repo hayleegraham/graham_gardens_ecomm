@@ -38,7 +38,7 @@ export default function Search() {
       <input
         onClick={searchClicked}
         
-        className="search_btn text-[13px] px-[10px] py-[5px] hover:scale-105 cursor-pointer"
+        className="search_btn text-[13px] px-[10px] py-[5px] hover:scale-105 cursor-pointer active:scale-95"
         type="button"
         value="SEARCH"
       />

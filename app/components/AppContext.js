@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
   const [categoryName, setCategoryName] = useState('');
   const [buyNowItem, setBuyNowItem] = useState(null);
   const [buyNowPrice, setBuyNowPrice] = useState(0);
-
+  const [shippingPrice, setShippingPrice] = useState(2.99);
   const fuse = useRef();
 
   useEffect(() => {
@@ -71,17 +71,24 @@ const AppProvider = ({ children }) => {
     //calculates current cart qty
     let currQty = 0;
     let currPrice = 0;
+    let formattedPrice = 0;
     cartItems.forEach((item) => {
       currQty += item.qty;
       currPrice += (item.qty * item.price);
     });
-    let formattedPrice = currPrice.toFixed(2);
+    if(currPrice < 25 && cartItems.length > 0){
+      setShippingPrice(2.99);
+      formattedPrice = (currPrice + shippingPrice).toFixed(2);
+    }else{
+      setShippingPrice(0);
+      formattedPrice = currPrice.toFixed(2);
+    }
     setCartQty(currQty);
     setTotalPrice(formattedPrice);
     //add cart items to local storage
     window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log("Cart Items:", cartItems);
-  }, [cartItems]);
+  }, [cartItems, shippingPrice]);
 
   const addProduct = (product, qty) => {
     //find returns first item in array that matches product name
@@ -122,14 +129,21 @@ const AppProvider = ({ children }) => {
     setBuyNowItem(null);
   }
 
-  //fires anytime cartItems is changed
+  //fires anytime buy now item is changed
   useEffect(() => {
+    let formattedPrice = 0;
     if(!buyNowItem) return
-    //calculate total price for But Now Item 
+    //calculate total price for Buy Now Item 
     const currPrice = (buyNowItem.qty * buyNowItem.price);
-    let formattedPrice = currPrice.toFixed(2);
+    if(currPrice < 25){
+      setShippingPrice(2.99);
+      formattedPrice = (currPrice + shippingPrice).toFixed(2);
+    }else{
+      setShippingPrice(0);
+      formattedPrice = currPrice.toFixed(2);
+    }
     setBuyNowPrice(formattedPrice);
-  }, [buyNowItem]);
+  }, [buyNowItem, shippingPrice]);
 
   //when card on homepage is clicked, return data for clicked item
   const getProductByName = (prodName) => {
@@ -200,7 +214,8 @@ const AppProvider = ({ children }) => {
         addBuyNow,
         buyNowItem,
         buyNowPrice,
-        removeBuyNow
+        removeBuyNow,
+        shippingPrice
       }}
     >
       {children}
