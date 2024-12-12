@@ -17,23 +17,28 @@ export default function Checkout() {
   } = useContext(AppContext);
   const checkoutProducts = useRef();
   const currTotalPrice = useRef();
+  const currTotalPriceNoShip = useRef();
   const noBuyNowItem = useRef();
   const purchase_items = useRef();
+  const currShippingPrice = useRef();
 
   useEffect(() => {
+    currShippingPrice.current = shippingPrice;
     if (!buyNowItem) {
       noBuyNowItem.current = true;
       const checkoutProductsArr = cartItems.map((item) => {
         return item.name;
       });
       checkoutProducts.current = checkoutProductsArr.join(", ");
-      currTotalPrice.current = totalPrice;
+      currTotalPrice.current = totalPrice
+      currTotalPriceNoShip.current = (totalPrice - shippingPrice).toFixed(2);
     } else {
       noBuyNowItem.current = false;
-      checkoutProducts.current = buyNowItem.name;
       currTotalPrice.current = buyNowPrice;
+      checkoutProducts.current = buyNowItem.name;
+      currTotalPriceNoShip.current = (buyNowPrice - shippingPrice).toFixed(2);
     }
-  }, [cartItems, totalPrice, buyNowItem, buyNowPrice]);
+  }, [cartItems, totalPrice, buyNowItem, buyNowPrice, shippingPrice]);
 
   if (!buyNowItem) {
     purchase_items.current = cartItems.map((item) => {
@@ -57,7 +62,7 @@ export default function Checkout() {
         quantity: buyNowItem.qty,
       }]
   }
-  console.log(purchase_items);
+  
   const onCreateOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
@@ -68,11 +73,11 @@ export default function Checkout() {
               item_total: {
                 unit_amount: cartQty,
                 currency_code: "USD",
-                value: currTotalPrice.current - shippingPrice,
+                value: currTotalPriceNoShip.current,
               },
               shipping: {
                 currency_code: "USD",
-                value: shippingPrice,
+                value: currShippingPrice.current,
               },
               description: "breakdown",
             },
