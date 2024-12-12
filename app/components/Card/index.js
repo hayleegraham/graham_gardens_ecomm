@@ -3,7 +3,7 @@ import { AppContext } from "@/app/components/AppContext";
 import "./Card.scss";
 
 export default function Card({ data }) {
-  const { addProduct } = useContext(AppContext);
+  const { addProduct, addBuyNow } = useContext(AppContext);
   const [count, setCount] = useState(1);
 
   const countUp = (e) =>{
@@ -21,6 +21,13 @@ export default function Card({ data }) {
     e.preventDefault();
     addProduct({...data}, count)
   }
+
+  const handleBuyNow = (e) => {
+    e.preventDefault();
+    addBuyNow({...data}, count)
+    //console.log(e)
+  }
+
   return (
     <div className="card xl:w-[306.5px] w-[282px] xl:h-[379px]">
       <img className="max-w-none h-[185px] xl:w-[305px] w-[280px]" src={data.image.mainImage}></img>
@@ -34,7 +41,7 @@ export default function Card({ data }) {
         <button onClick={countUp}>+</button>
       </div>
       <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105" onClick={handleAddToCart}>ADD TO CART</button>
-      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105">BUY NOW</button>
+      <button className="main_btn text-[13px] h-[25px] hover:shadow-xl hover:scale-105" onClick={handleBuyNow}>BUY NOW</button>
     </div>
   );
 }

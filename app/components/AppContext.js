@@ -26,6 +26,8 @@ const AppProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [categoryName, setCategoryName] = useState('');
+  const [buyNowItem, setBuyNowItem] = useState(null);
+  const [buyNowPrice, setBuyNowPrice] = useState(0);
 
   const fuse = useRef();
 
@@ -110,6 +112,25 @@ const AppProvider = ({ children }) => {
     setCartItems([]);
   }
 
+  const addBuyNow = (product, qty) => {
+    product.qty = qty;
+    setBuyNowItem(product);
+    setCartVisible(true);
+  }
+
+  const removeBuyNow = () => {
+    setBuyNowItem(null);
+  }
+
+  //fires anytime cartItems is changed
+  useEffect(() => {
+    if(!buyNowItem) return
+    //calculate total price for But Now Item 
+    const currPrice = (buyNowItem.qty * buyNowItem.price);
+    let formattedPrice = currPrice.toFixed(2);
+    setBuyNowPrice(formattedPrice);
+  }, [buyNowItem]);
+
   //when card on homepage is clicked, return data for clicked item
   const getProductByName = (prodName) => {
     const prodData = products.find(
@@ -175,7 +196,11 @@ const AppProvider = ({ children }) => {
         setSelectedCategory,
         selectedCategory,
         categoryName,
-        setCategoryName
+        setCategoryName,
+        addBuyNow,
+        buyNowItem,
+        buyNowPrice,
+        removeBuyNow
       }}
     >
       {children}

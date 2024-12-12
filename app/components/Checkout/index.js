@@ -1,21 +1,29 @@
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { AppContext } from "@/app/components/AppContext";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 export default function Checkout() {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-  const { cartItems, totalPrice, resetCart, setCartVisible } = useContext(AppContext);
+  const { cartItems, totalPrice, resetCart, setCartVisible, buyNowItem, buyNowPrice, removeBuyNow } = useContext(AppContext);
   const checkoutProducts = useRef();
   const currTotalPrice = useRef();
- 
+  const noBuyNowItem = useRef();
 
   useEffect(() => {
-      const checkoutProductsArr = cartItems.map((item)=>{
-        return item.name ;
-      })
-      checkoutProducts.current = checkoutProductsArr.join(", ");
-      currTotalPrice.current = totalPrice;
-    }, [cartItems, totalPrice])
+    if(!buyNowItem) {
+        noBuyNowItem.current = true;
+        const checkoutProductsArr = cartItems.map((item)=>{
+          return item.name ;
+        })
+        checkoutProducts.current = checkoutProductsArr.join(", ");
+        currTotalPrice.current = totalPrice;
+    }else{
+        noBuyNowItem.current = false;
+        checkoutProducts.current = buyNowItem.name;
+        currTotalPrice.current = buyNowPrice;
+    }
+    console.log("buy now Price:", buyNowPrice)
+}, [cartItems, totalPrice, buyNowItem, buyNowPrice])
     
     const onCreateOrder = (data, actions) => {
       return actions.order.create({
@@ -33,7 +41,12 @@ export default function Checkout() {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
       setCartVisible(false);
-      resetCart();
+      console.log(noBuyNowItem.current)
+      if(noBuyNowItem.current == true){
+          resetCart();
+      }else{
+        removeBuyNow();
+      }
       console.log(`Transaction completed by ${name}`);
     });
   };

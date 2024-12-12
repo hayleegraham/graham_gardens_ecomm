@@ -11,7 +11,7 @@ export default function Cart() {
     currency: "USD",
     intent: "capture",
   };
-  const { cartVisible, setCartVisible, cartItems, totalPrice, removeProduct } = useContext(AppContext);
+  const { cartVisible, setCartVisible, cartItems, totalPrice, removeProduct, buyNowItem, buyNowPrice, removeBuyNow } = useContext(AppContext);
   const drawer = useRef();
 
   const options = {
@@ -54,6 +54,7 @@ export default function Cart() {
 
   const showDrawer = () => {
     drawer.current.show()
+    console.log("Buy Now:", buyNowItem)
   }
 
   const hideDrawer = () => {
@@ -74,7 +75,8 @@ export default function Cart() {
         aria-labelledby="drawer-right-label"
       >
         <div className="inline-flex items-center mb-4 h-[36px] text-xl font-semibold bg-[#cbe2d3] w-full">
-          <h4 id="drawer-right-label" className="pl-[6px]">Cart</h4>
+          {!buyNowItem && <h4 id="drawer-right-label" className="pl-[6px]">Cart</h4>}
+          {buyNowItem && <h4 id="drawer-right-label" className="pl-[6px]">Buy Now</h4>}
           <button
           onClick={hideDrawer}
             type="button"
@@ -84,7 +86,6 @@ export default function Cart() {
           >
             <svg
               className="w-3 h-3"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 14 14"
@@ -101,7 +102,7 @@ export default function Cart() {
           </button>
         </div>
         <div className="flex flex-col gap-4">
-        {cartItems?.map((item) => (
+        {!buyNowItem && cartItems?.map((item) => (
               <div
               key={item.name}
               className="flex flex-row justify-between gap-[10px] px-[12px]">
@@ -114,10 +115,24 @@ export default function Cart() {
                </button>
               </div>
             ))}
+            {buyNowItem && 
+              <div
+              key={buyNowItem.name}
+              className="flex flex-row justify-between gap-[10px] px-[12px]">
+                <div className="w-[178px]">{buyNowItem.name}</div> 
+                <div>x {buyNowItem.qty}</div> 
+                <div>${buyNowItem.price}</div>
+                <button className="self-end"
+                onClick={() => removeBuyNow()}>
+                  <span className="material-symbols-outlined">delete</span>
+               </button>
+              </div>
+           }
             <hr></hr>
             <div className="flex flex-row gap-[10px] mb-[20px] pl-[10px] font-semibold">
               <div className="">Subtotal:</div>
-              <div>${totalPrice}</div>
+              {!buyNowItem && <div>${totalPrice}</div>}
+              {buyNowItem && <div>${buyNowPrice}</div>}
             </div>
         </div>
       <PayPalScriptProvider options={initialOptions}>
