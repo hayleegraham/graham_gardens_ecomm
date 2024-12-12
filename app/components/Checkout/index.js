@@ -91,12 +91,13 @@ export default function Checkout() {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
       setCartVisible(false);
-      console.log(noBuyNowItem.current);
+      
       if (noBuyNowItem.current == true) {
         resetCart();
       } else {
         removeBuyNow();
       }
+      alert(`Thank you for your purchase ${name}! A confirmation will be sent to your email.`);
       console.log(`Transaction completed by ${name}`);
     });
   };

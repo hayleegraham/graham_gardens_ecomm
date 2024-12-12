@@ -7,7 +7,7 @@ export default function Footer() {
             <ul className="lg:w-[300px] w-[210px]">
                 <li><Link className="text-base font-bold" href="/contact">Contact Us:</Link></li>
                 <li className="text-base flex pt-[5px]"><span className="material-symbols-outlined">call</span>888-888-8888</li>
-                <li className="text-base flex pt-[5px]"><span className="material-symbols-outlined">mail</span>contact@grahamgradens.com</li>
+                <li className="text-base flex pt-[5px]"><span className="material-symbols-outlined">mail</span>contact@grahamgardens.com</li>
             </ul>
             <ul>
                 <li><a className="text-base font-bold" href="/">Social Media:</a></li>

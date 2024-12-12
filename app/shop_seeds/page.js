@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "./shop_seeds.scss";
 import { AppContext } from "@/app/components/AppContext";
 import Card from "@/app/components/Card";
@@ -19,6 +19,13 @@ export default function ShopSeeds() {
     setCategoryName,
     searchVal,
   } = useContext(AppContext);
+
+  const [varHeight, setVarHeight] = useState();
+  const isSmall = useRef();
+
+  if (typeof window !== "undefined") {
+    isSmall.current = window.innerWidth < 1280;
+  }
 
   useEffect(() => {
     setSelectedCategory("");
@@ -48,8 +55,21 @@ export default function ShopSeeds() {
     }
   }, [errorMsg]);
 
+  //sets height of container div when amount of displayed seeds changes
+  useEffect(() => {
+    if (isSmall.current) {
+      setVarHeight(displayedSeeds.length * 419 + 185);
+    } else {
+      if (displayedSeeds.length < 6 && displayedSeeds.length > 3) {
+        setVarHeight((displayedSeeds.length / 2) * 419 + 185);
+      } else {
+        setVarHeight((displayedSeeds.length / 3) * 419 + 185);
+      }
+    }
+  }, [displayedSeeds]);
+
   return (
-    <div className="flex flex-col mx-auto">
+    <div className="flex flex-col mx-auto" style={{ height: varHeight }}>
       <Search />
       <div>
         <label htmlFor="categories">Select a Category:</label>
@@ -68,7 +88,7 @@ export default function ShopSeeds() {
           ))}
         </select>
       </div>
-      <div className="mx-auto xl:w-[1041px] xl:h-[2150px] w-[310px] h-[6450px]">
+      <div className="mx-auto xl:w-[1041px] xl:h-[2150px] w-[310px]">
         <h2 className="font-bold text-2xl text-center">{categoryName}</h2>
         {errorMsg && <p className="text-center">{errorMsg}</p>}
         <div className="relative flex justify-center xl:block">
@@ -79,6 +99,7 @@ export default function ShopSeeds() {
                   .replace(/\s/g, "_")
                   .replace(/&/g, "and")}`}
                 key={seed.name}
+                className="h-[419px]"
               >
                 <Card key={seed.name} data={seed} />
               </Link>

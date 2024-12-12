@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Carousel.scss";
 
 
-
 export default function Carousel() {
   const settings = {
     dots: true,
@@ -17,7 +16,7 @@ export default function Carousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3500 
+    autoplaySpeed: 3300 
   };
   
   return (
