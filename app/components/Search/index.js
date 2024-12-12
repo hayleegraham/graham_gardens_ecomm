@@ -20,7 +20,7 @@ export default function Search() {
   //
   return (
     <div className="flex flex-row justify-center gap-[10px] my-[30px] h-[26px]">
-      <label htmlFor="search">SEARCH SEEDS:</label>
+      <label htmlFor="search" className="text-[15px] pt-[2px]">SEARCH SEEDS:</label>
       <input
         onChange={(e) => setSearchVal(e.target.value)}
         onKeyDown={(e) => {

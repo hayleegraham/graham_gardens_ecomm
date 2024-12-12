@@ -1,28 +1,5 @@
-.carousel{
-    margin: 0 auto;
-    h2{
-        text-align: center;
-    }
-    .track{
-        display: flex;
-        position: absolute;
-        transition: ease-in-out 1s;
-        left: 0;
-    }
-    .mask{
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-    } 
-    .left_btn,
-    .right_btn{
-        height: 40px;
-        width: 40px;
-        font-size: xx-large;
-    }
-    span{
-        font-size: 130px;
-        color: rgb(110, 110, 110);
-        position: relative;
-    }
+.slick-dots{
+    bottom: -33px;
 }
+  
+   

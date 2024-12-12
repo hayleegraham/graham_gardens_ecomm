@@ -51,7 +51,7 @@ export default function MainNav() {
           onClick={displayNav}
         ></img>
         <ul
-          className="md:flex xl:gap-[30px] gap-[15px] flex-col md:flex-row mr-[50px] md:mr-0"
+          className="md:flex xl:gap-[35px] gap-[15px] flex-col md:flex-row mr-[50px] md:mr-0"
           style={{ display: isVisible ? "flex" : "none" }}
           ref={ref}
         >
@@ -63,11 +63,6 @@ export default function MainNav() {
           <li>
             <Link className="text-base" href="/contact">
               CONTACT US
-            </Link>
-          </li>
-          <li>
-            <Link className="text-base" href="/">
-              SUBSCRIBE
             </Link>
           </li>
           <li>
