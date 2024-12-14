@@ -20,6 +20,7 @@ export default function Card({ data }) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     addProduct({...data}, count)
+    setCount(1);
   }
 
   const handleBuyNow = (e) => {

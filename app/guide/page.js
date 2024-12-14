@@ -3,10 +3,10 @@ import Link from "next/link";
 export default function Guide() {
   return (
     <div className="flex flex-col xl:w-[1024px] sm:w-[515px] w-[258px] justify-center mx-auto my-[25px] gap-[15px] ">
-        <h2 className="font-bold text-center text-2xl">
+      <h2 className="font-bold text-center text-2xl">
         GARDENING GUIDE FOR BEGINNERS
       </h2>
-      
+
       <div className="flex xl:flex-row flex-col xl:w-[1024px] sm:w-[515px] w-[258px] justify-center items-center mx-auto my-[10px] gap-[10px] ">
         <h3 className="font-bold">Quick Links:</h3>
         <ul className="pl-[20px] flex xl:flex-row flex-col xl:gap-[15px] gap-[10px] underline text-sm pt-[3px]">
@@ -197,7 +197,9 @@ export default function Guide() {
           Make sure pots have drainage holes to prevent water from pooling,
           which can lead to root rot.
         </li>
-        <h4 className="font-bold">In-Ground Spacing:</h4>
+      </ul>
+      <h4 className="font-bold">In-Ground Spacing:</h4>
+      <ul className="list-disc pl-[20px]">
         <li>
           Plants need space for their roots to spread and for air to circulate
           around the foliage. Crowding plants can lead to competition for
