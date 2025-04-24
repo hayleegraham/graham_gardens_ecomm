@@ -98,7 +98,7 @@ export default function Checkout() {
         removeBuyNow();
       }
       alert(`Thank you for your purchase ${name}! A confirmation will be sent to your email.`);
-      console.log(`Transaction completed by ${name}`);
+      //console.log(`Transaction completed by ${name}`);
     });
   };
   return (
